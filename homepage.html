@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home page</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    letter-spacing: 0.7rem;
+    color:midnightblue;
+    font-size: xx-large;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight:900;
+    }
+	#nav > div{
+		width:30%;
+        background-color: darkmagenta;
+	}
+	#nav >div:nth-child(2){
+     flex-grow: 1;
+	}
+	#data{
+		width:75%;
+		padding:10px;
+
+	}
+	#search{
+		width:20%;
+		padding:10px;
+
+	}
+    div{
+        margin-left: 3%;
+        margin-bottom: 5%;
+        
+    }
+    div:hover{
+        cursor: pointer;
+       text-decoration: underline;
+       
+       text-transform: capitalize;
+       transform-style: preserve-3d;
+       font-family:cursive;
+
+
+
+    }
+	img{
+		width:70%;
+      
+
+	}
+
+</style>
+<body>
+
+	<h1>Top Headline</h1>
+	<div id = "data"></div>
+
+<div id = "items"></div>
+</body>
+</html>
+
+<script>
+
+
+async function Get_News(){
+
+	let res = await fetch("https://newsapi.org/v2/everything?q=apple&from=2021-10-17&to=2021-10-17&sortBy=popularity&apiKey=b51f791cb1df4059bdfcaf1563042122")
+
+	let data = await res.json();
+	console.log(data.articles)
+	Search_News(data.articles)
+}
+Get_News()
+let container = document.getElementById("items")
+function Search_News(items){
+container.innerHTML =null
+	items.forEach((item)=>{
+    let div = document.createElement("div");
+	div.setAttribute("class","inner_div");
+
+	let div2 = document.createElement("div");
+	div2.setAttribute("class","inner2_div");
+	
+
+	let author = document.createElement("p")
+	author.innerText= ("Author: "+item.author)
+	console.log(author)
+     
+	let title = document.createElement("h3")
+	title.innerText = item.title
+	console.log(title)
+
+	let content = document.createElement("p")
+	content.innerText = item.content
+	console.log(content)
+
+	let publishedAt= document.createElement("p")
+	publishedAt.innerText = item.publishedAt
+
+	let urlToImage =document.createElement("img")
+	urlToImage.src = item.urlToImage
+	let description = document.createElement("p")
+	description.innerText =item.description
+	console.log(title)
+
+
+    
+	div.append(urlToImage,title)
+	container.append(div)
+	});
+
+	
+	
+}
+Search_News()
+</script>
