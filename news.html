@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
+    <title>News Headlines</title>
 
 
     <style>
@@ -16,9 +16,7 @@
         cursor: pointer;
         font-display:initial;
         text-decoration: underline;
-        font-size:larger
-
-    }
+        font-size:larger}
 h1{
     text-align: center;
     letter-spacing: 0.7rem;
@@ -31,6 +29,7 @@ h2{
     text-align: center;
     color:darkgreen;
     margin-bottom: 5%;
+    letter-spacing: 0.5rem;
 }
 
 img{
@@ -38,10 +37,23 @@ img{
     height: 350px;
    
 }
-
+input{
+    width:70%;
+    height: 25px;
+    text-align: center;
+    letter-spacing: 0.7rem;
+    font-weight: 700;
+}
+button{
+    width:25%;
+    height: 30px;
+}
     </style>
 </head>
 <body>
+
+    <input type="text" id="newsapi" placeholder="SEARCH NEWS"/>
+    <button onclick="">Search Now</button>
     <h1>News worldwide</h1>
 
 
@@ -83,3 +95,7 @@ items.forEach(function(item){
 }
 searchnews()
 </script>
+
+
+
+//https://github.com/Abhisingh755/news/commit/fe49218f99835e094155460009767f75b8d05b28
