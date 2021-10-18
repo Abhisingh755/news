@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+</head>
+<body>
+    <h1>News worldwide</h1>
+    <div id="data"></div>
+    <div id="items"></div>
+    
+</body>
+
+</html>
+<script>
+let container = document.getElementById('data');
+
+async function getnews() {
+let res = await fetch("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b51f791cb1df4059bdfcaf1563042122")
+    let data = await res.json();
+    console.log(data.articles)
+    searchnews(data.articles)
+}
+
+getnews(data)
+
+function searchnews(items) {
+container.innerHTML = null
+items.forEach(function(item){
+    let div = document.createElement('div')
+
+    let img = document.createElement('img')
+
+    let title = document.createElement('p')
+    title.innerHTML = item.title
+    console.log(title);
+
+    div.append(img,title)
+    container.append(div)
+})
+}
+searchnews()
+</script>
