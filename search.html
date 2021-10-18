@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search News</title>
+
+    <style>
+
+input{
+    width:70%;
+    height: 25px;
+    text-align: center;
+    letter-spacing: 0.7rem;
+    font-weight: 700;
+}
+button{
+    width:25%;
+    height: 30px;
+}
+    </style>
+</head>
+<body>
+    
+    <input type="text" id="newsapi" placeholder="SEARCH NEWS"/>
+    <button onclick="">Search Now</button>
+   <div id = "data"></div>
+
+</body>
+
+
+</html>
+<script>
+let container = document.getElementById('data')
+
+async function getnews(){
+
+
+  let a;
+    let res = await fetch("https://newsapi.org/v2/everything?q=tesla&from=2021-09-18&sortBy=publishedAt&apiKey=b51f791cb1df4059bdfcaf1563042122")
+
+    let data = await res.json();
+    console.log(data.articles);
+    searchnews(data.articles)
+}
+getnews()
+function searchnews(movs){
+    movs.forEach((mov)=>{
+
+        container.innerHTML = null;
+       
+       let img = document.createElement('img')
+    img.src = item.urlToImage
+
+
+    let title = document.createElement('p')
+    title.innerHTML = item.title
+    console.log(title);
+    
+
+    let author = document.createElement('p')
+    author.innerHTML = mov.author
+    console.log(author);
+
+   
+    container.append(author)
+
+    })
+ 
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+</script>
